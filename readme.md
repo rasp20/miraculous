@@ -19,6 +19,12 @@ Packages:
 - jest: the core dependency required for Jest to work.
 - jest-environment-jsdom: To allow to use jsdom and will use it together with @testing-library/jest-dom.
 - eslint-plugin-jest: To make sslint recognise jest code.
+- tailwindcss: A core package that installs Tailwind CSS.
+- autoprefixer: A PostCSS plugin that Tailwind CSS uses to automatically adds vendor prefixes to write styles supported by all browsers.
+- postcss: A tool for transforming styles with JS plugins. These plugins can lint your CSS, support variables and mixins, transpile future CSS syntax, inline images, and more.
+- style-loader: used by webpack to inject CSS into the DOM.
+- css-loader: used by webpack to interprets and resolve imports in CSS
+- postcss-loader: used by webpack to process PostCSS as we installed PostCSS earlier.
 
 Configuration
 

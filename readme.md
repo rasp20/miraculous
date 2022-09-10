@@ -14,6 +14,11 @@ Packages:
 - prettier: Code formatter that styles code consistently. It is supports HTML, CSS, Javascript, and most of their libraries.
 - eslint-config-prettier: Turns off all eslint rules that are unnecessary or might conflict with Prettier and to make sure that eslint only check code syntax style while Prettier check code formatting.
 - eslint-import-resolver-webpack: Resolve paths to dependencies, given a webpack.config.js.
+- @testing-library/react: The core dependency that install react testing library.
+- @testing-library/jest-dom: A virtual DOM for jest allow to use custom jest matchers to extend jest with react testing library.
+- jest: the core dependency required for Jest to work.
+- jest-environment-jsdom: To allow to use jsdom and will use it together with @testing-library/jest-dom.
+- eslint-plugin-jest: To make sslint recognise jest code.
 
 Configuration
 

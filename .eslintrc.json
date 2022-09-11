@@ -25,6 +25,7 @@
         "jsx": "never",
         "": "never"
       }
-    ]
+    ],
+    "react/jsx-props-no-spreading": 0
   }
 }

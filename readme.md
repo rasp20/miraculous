@@ -31,3 +31,5 @@ Configuration
 - ESLint: On this project, the ESLint configured using Airbnb JavaScript styles by `npm init @eslint/config`.
 
 - Husky and pre-commit: Allows to work with Git hooks. Git hooks are scripts that can set up to run at certain events in the Git lifecycle like before every commit or push. On this project, pre-commit and Husky configured using `lint-staged`.
+
+- Storybook: a development tool that lets you run and test your UI components without a complete React environment for component-driven development.

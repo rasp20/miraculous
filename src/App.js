@@ -1,5 +1,5 @@
 import React from 'react';
-import './app.css';
+import '../styles/globals.css';
 
 function App() {
   return <h1 className="text-primary text-4xl font-bold">Hello world!</h1>;

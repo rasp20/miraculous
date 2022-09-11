@@ -6,14 +6,13 @@ export default {
   title: 'Atoms/Button',
   component: Button,
   argTypes: {
-    label: "Button",
-  },
+    label: 'Button'
+  }
 };
 
 const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  label: 'Button',
+  label: 'Button'
 };
-

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Button({ label, ...props }) {
+function Button({ label, width, ...props }) {
   return (
     <button
       type="button"
-      className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+      className="bg-transparent text-sm hover:bg-blue-500 hover:text-white py-1 px-4 border border-gray-300 hover:border-transparent rounded-sm"
+      style={{ width }}
       {...props}
     >
       {label}
@@ -14,7 +15,13 @@ function Button({ label, ...props }) {
 }
 
 Button.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string,
+  width: PropTypes.string
+};
+
+Button.defaultProps = {
+  label: 'Button',
+  width: '100px'
 };
 
 export default Button;

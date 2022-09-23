@@ -8,7 +8,14 @@ export default {
   argTypes: {}
 };
 
-const Template = (args) => <UserList {...args} />;
+function Template(args) {
+  return <UserList {...args} />;
+}
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  props: {
+    params: {},
+    setParams: () => {}
+  }
+};

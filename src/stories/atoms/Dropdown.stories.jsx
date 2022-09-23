@@ -16,7 +16,9 @@ export default {
   }
 };
 
-const Template = (args) => <Dropdown {...args} />;
+function Template(args) {
+  return <Dropdown {...args} />;
+}
 
 export const Gender = Template.bind({});
 Gender.args = {

@@ -47,7 +47,11 @@ function Pagination(props) {
         {paginationRange &&
           paginationRange.map((pageNumber) => {
             if (pageNumber === DOTS) {
-              return <li className="pagination-item dots">&#8230;</li>;
+              return (
+                <li className="pagination-item dots" key={DOTS}>
+                  &#8230;
+                </li>
+              );
             }
             return (
               <li
@@ -55,6 +59,7 @@ function Pagination(props) {
                   selected: pageNumber === currentPage
                 })}
                 onClick={() => onPageChange(pageNumber)}
+                key={pageNumber}
               >
                 {pageNumber}
               </li>

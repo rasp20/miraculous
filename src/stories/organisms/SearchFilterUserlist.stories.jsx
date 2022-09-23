@@ -8,7 +8,14 @@ export default {
   argTypes: {}
 };
 
-const Template = (args) => <SearchFilterUserlist {...args} />;
+function Template(args) {
+  return <SearchFilterUserlist {...args} />;
+}
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  props: {
+    params: {},
+    setParams: () => {}
+  }
+};

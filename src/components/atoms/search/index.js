@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SearchIcon from '../../../assets/svg/SearchIcon';
 
-function Search({ width, label, placeholder, ...props }) {
+function Search({ width, label, placeholder, onSearch }) {
+  const [keyword, setKeyword] = useState('');
+
+  const handleKeyDownSearch = (e) => {
+    if (e.key === 'Enter') {
+      onSearch(keyword);
+    }
+    return null;
+  };
+
   return (
     <div style={{ width, marginRight: '45px' }}>
       <span className="text-sm">{label}</span>
@@ -12,7 +21,9 @@ function Search({ width, label, placeholder, ...props }) {
           placeholder={placeholder}
           className="bg-transparent py-1 px-4 border border-gray-300 rounded-l-sm text-sm"
           style={{ width }}
-          {...props}
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={handleKeyDownSearch}
         />
         <span className="bg-blue-500 border-gray-300 rounded-r-sm flex items-center">
           <SearchIcon className="my-auto h-5 w-5 mx-3" />
@@ -25,13 +36,15 @@ function Search({ width, label, placeholder, ...props }) {
 Search.propTypes = {
   width: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  onSearch: PropTypes.func
 };
 
 Search.defaultProps = {
   width: '100px',
   label: 'Label',
-  placeholder: 'Type here'
+  placeholder: 'Type here',
+  onSearch: () => {}
 };
 
 export default Search;

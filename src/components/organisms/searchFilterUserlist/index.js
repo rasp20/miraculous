@@ -15,8 +15,13 @@ function SearchFilterUserlist({ props }) {
 
   return (
     <div className="flex space-x-4 pb-8 items-end">
-      <Search placeholder="Search..." onSearch={(keyword) => setParams({ ...params, keyword })} />
+      <Search
+        placeholder="Search..."
+        label="Search"
+        onSearch={(keyword) => setParams({ ...params, keyword })}
+      />
       <Filter
+        label="Gender"
         options={filterOptions}
         onFilter={(filter) => setParams({ ...params, gender: filter })}
       />

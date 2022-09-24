@@ -1,10 +1,16 @@
 /* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import SortIcon from '../../../assets/svg/SortIcon';
+import SortNoneIcon from '../../../assets/svg/SortNoneIcon';
+import SortAscIcon from '../../../assets/svg/SortAscIcon';
+import SortDescIcon from '../../../assets/svg/SortDescIcon';
 
 function TableUserlist({ props }) {
   const { params, setParams, data, loading } = props;
+  const [sortColumnName, setSortColumnName] = useState(1);
+  const [sortColumnEmail, setSortColumnEmail] = useState(1);
+  const [sortColumnGender, setSortColumnGender] = useState(1);
+  const [sortColumnRegisteredDate, setSortColumnRegisteredDate] = useState(1);
 
   const tableHead = [
     {
@@ -24,59 +30,138 @@ function TableUserlist({ props }) {
       name: 'Gender'
     },
     {
-      key: 'registered_date'
+      key: 'registered_date',
+      name: 'Registered Date'
     }
   ];
+
+  const handleSortValue = (value) => {
+    if (value === 2) {
+      return 'desc';
+    }
+    if (value === 3) {
+      return '';
+    }
+    return 'ascend';
+  };
+
+  const determineSortColumnName = () => {
+    setSortColumnName(sortColumnName === 3 ? 1 : sortColumnName + 1);
+    return handleSortValue(sortColumnName);
+  };
+
+  const determineSortColumnEmail = () => {
+    setSortColumnEmail(sortColumnEmail === 3 ? 1 : sortColumnEmail + 1);
+    return handleSortValue(sortColumnEmail);
+  };
+
+  const determineSortColumnGender = () => {
+    setSortColumnGender(sortColumnGender === 3 ? 1 : sortColumnGender + 1);
+    return handleSortValue(sortColumnGender);
+  };
+
+  const determineSortColumnRegisteredDate = () => {
+    setSortColumnRegisteredDate(sortColumnRegisteredDate === 3 ? 1 : sortColumnRegisteredDate + 1);
+    return handleSortValue(sortColumnRegisteredDate);
+  };
+
+  const onSortByName = () => {
+    setParams({ ...params, sortBy: 'name', sortOrder: determineSortColumnName() });
+    setSortColumnEmail(1);
+    setSortColumnGender(1);
+    setSortColumnRegisteredDate(1);
+  };
+
+  const onSortByEmail = () => {
+    setParams({ ...params, sortBy: 'email', sortOrder: determineSortColumnEmail() });
+    setSortColumnName(1);
+    setSortColumnGender(1);
+    setSortColumnRegisteredDate(1);
+  };
+
+  const onSortByGender = () => {
+    setParams({ ...params, sortBy: 'gender', sortOrder: determineSortColumnGender() });
+    setSortColumnName(1);
+    setSortColumnEmail(1);
+    setSortColumnRegisteredDate(1);
+  };
+
+  const onSortByRegisteredDate = () => {
+    setParams({
+      ...params,
+      sortBy: 'registered',
+      sortOrder: determineSortColumnRegisteredDate()
+    });
+    setSortColumnEmail(1);
+    setSortColumnName(1);
+    setSortColumnGender(1);
+  };
+
+  const handleSortIcon = (value) => {
+    if (value === 1) {
+      return <SortNoneIcon />;
+    }
+    if (value === 2) {
+      return <SortAscIcon />;
+    }
+    return <SortDescIcon />;
+  };
 
   const handleTableHead = (key, name) => {
     if (key === 'name') {
       return (
         <th
-          className="py-3 px-6 cursor-pointer"
+          className={`py-3 px-6 cursor-pointer ${sortColumnName !== 1 ? `bg-gray-100` : ''}`}
           key={`${key}`}
-          onClick={() => setParams({ ...params, sortBy: 'name' })}
+          onClick={() => onSortByName()}
         >
           <div className="flex items-center justify-between">
             {name}
-            <span className="cursor-pointer">
-              <SortIcon />
-            </span>
+            <span className="cursor-pointer">{handleSortIcon(sortColumnName)}</span>
           </div>
         </th>
       );
     }
     if (key === 'email') {
       return (
-        <th className="py-3 px-6 cursor-pointer" key={`${key}`}>
+        <th
+          className={`py-3 px-6 cursor-pointer ${sortColumnEmail !== 1 ? `bg-gray-100` : ''}`}
+          key={`${key}`}
+          onClick={() => onSortByEmail()}
+        >
           <div className="flex items-center justify-between">
             {name}
-            <span className="cursor-pointer">
-              <SortIcon />
-            </span>
+            <span className="cursor-pointer">{handleSortIcon(sortColumnEmail)}</span>
           </div>
         </th>
       );
     }
     if (key === 'gender') {
       return (
-        <th className="py-3 px-6 cursor-pointer" key={`${key}`}>
+        <th
+          className={`py-3 px-6 cursor-pointer ${sortColumnGender !== 1 ? `bg-gray-100` : ''}`}
+          key={`${key}`}
+          onClick={() => onSortByGender()}
+        >
           <div className="flex items-center justify-between">
             {name}
-            <span className="cursor-pointer">
-              <SortIcon />
-            </span>
+            <span className="cursor-pointer">{handleSortIcon(sortColumnGender)}</span>
           </div>
         </th>
       );
     }
     if (key === 'registered_date') {
       return (
-        <th className="py-3 px-6 cursor-pointer" key={`${key}`}>
+        <th
+          className={`py-3 px-6 cursor-pointer ${
+            sortColumnRegisteredDate !== 1 ? `bg-gray-100` : ''
+          }`}
+          key={`${key}`}
+          onClick={() => onSortByRegisteredDate()}
+        >
           <div className="flex items-center justify-between">
             {name}
-            <span className="cursor-pointer">
-              <SortIcon />
-            </span>
+            <span className="cursor-pointer">{handleSortIcon(sortColumnRegisteredDate)}</span>
           </div>
         </th>
       );
@@ -88,17 +173,67 @@ function TableUserlist({ props }) {
     );
   };
 
+  const handleTableBodyCell = (el, key) => {
+    if (key === 'name') {
+      return (
+        <td
+          className={`py-4 px-6 cursor-pointer ${sortColumnName !== 1 ? `bg-gray-100` : ''}`}
+          key={`${key}`}
+          onClick={() => onSortByName()}
+        >
+          {el[key]}
+        </td>
+      );
+    }
+    if (key === 'email') {
+      return (
+        <td
+          className={`py-4 px-6 cursor-pointer ${sortColumnEmail !== 1 ? `bg-gray-100` : ''}`}
+          key={`${key}`}
+          onClick={() => onSortByEmail()}
+        >
+          {el[key]}
+        </td>
+      );
+    }
+    if (key === 'gender') {
+      return (
+        <td
+          className={`py-4 px-6 cursor-pointer ${sortColumnGender !== 1 ? `bg-gray-100` : ''}`}
+          key={`${key}`}
+          onClick={() => onSortByGender()}
+        >
+          {el[key]}
+        </td>
+      );
+    }
+    if (key === 'registered_date') {
+      return (
+        <td
+          className={`py-4 px-6 cursor-pointer ${
+            sortColumnRegisteredDate !== 1 ? `bg-gray-100` : ''
+          }`}
+          key={`${key}`}
+          onClick={() => onSortByRegisteredDate()}
+        >
+          {el[key]}
+        </td>
+      );
+    }
+    return (
+      <td className="py-4 px-6" key={`${key}`}>
+        {el[key]}
+      </td>
+    );
+  };
+
   const handleTableBody = (tableData, isLoading) => {
     if (tableData && !loading) {
       return (
         <tbody>
           {tableData.map((el, index) => (
             <tr className="border-b" key={`tableData-${index + 1}`}>
-              {tableHead.map(({ key }) => (
-                <td className="py-4 px-6" key={`${key}`}>
-                  {el[key]}
-                </td>
-              ))}
+              {tableHead.map(({ key }) => handleTableBodyCell(el, key))}
             </tr>
           ))}
         </tbody>

@@ -25,9 +25,13 @@ function Search({ width, label, placeholder, onSearch }) {
           onChange={(e) => setKeyword(e.target.value)}
           onKeyDown={handleKeyDownSearch}
         />
-        <span className="bg-blue-500 border-gray-300 rounded-r-sm flex items-center">
+        <button
+          type="button"
+          className="bg-blue-500 border-gray-300 rounded-r-sm flex items-center cursor-pointer"
+          onClick={() => onSearch(keyword)}
+        >
           <SearchIcon className="my-auto h-5 w-5 mx-3" />
-        </span>
+        </button>
       </div>
     </div>
   );

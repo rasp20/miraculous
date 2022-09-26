@@ -7,6 +7,7 @@ function Dropdown({ width, label, options, onFilter }) {
       <span className="text-sm">{label}</span>
       <select
         id="select"
+        data-testid="select"
         className="border border-gray-300 text-sm rounded-sm focus:ring-blue-500 block p-1"
         defaultValue=""
         style={{ width }}
@@ -15,7 +16,7 @@ function Dropdown({ width, label, options, onFilter }) {
       >
         {options
           ? options.map((option) => (
-              <option value={option.value} key={option.value}>
+              <option value={option.value} key={option.value} data-testid="select-option">
                 {option.label}
               </option>
             ))
@@ -40,7 +41,11 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
   width: '200px',
   label: 'Label',
-  options: [],
+  options: [
+    { value: 'all', label: 'All' },
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' }
+  ],
   onFilter: () => {}
 };
 

@@ -29,6 +29,7 @@ function Search({ width, label, placeholder, onSearch }) {
         <button
           type="button"
           data-testid="search-button"
+          aria-label="search-button"
           className="bg-blue-500 border-gray-300 rounded-r-sm flex items-center cursor-pointer"
           onClick={() => onSearch(keyword)}
         >

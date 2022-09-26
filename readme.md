@@ -1,6 +1,6 @@
 ## Miraculous Project
 
-An web aplication (sample project) to show user data (from Random User Generator API - https://randomuser.me/api) with functionalities to search by keyword name with debounce search, filter by gender, sort by table column, and pagination.
+An web application (sample project) to show user data from Random User Generator API (https://randomuser.me/api) with functionalities to search by keyword name with debounce search, filter by gender, sort by table column, and pagination.
 
 #
 
@@ -135,3 +135,9 @@ This tech debt list is list of things that can be improve or implement in the ne
 
 - Improve code coverage by create test file for all components and redux actions.
 - Implement Lazy Load for table if needed.
+
+#
+
+## 6. Deployment
+
+This project was deployed using vercel. To preview the project, you can access https://miraculous-project.vercel.app/

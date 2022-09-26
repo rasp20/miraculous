@@ -18,6 +18,7 @@ function Search({ width, label, placeholder, onSearch }) {
       <div className="flex">
         <input
           type="text"
+          data-testid="search-input"
           placeholder={placeholder}
           className="bg-transparent py-1 px-4 border border-gray-300 rounded-l-sm text-sm"
           style={{ width }}
@@ -27,6 +28,7 @@ function Search({ width, label, placeholder, onSearch }) {
         />
         <button
           type="button"
+          data-testid="search-button"
           className="bg-blue-500 border-gray-300 rounded-r-sm flex items-center cursor-pointer"
           onClick={() => onSearch(keyword)}
         >

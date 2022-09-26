@@ -1,6 +1,6 @@
 ## Miraculous Project
 
-An web application (sample project) to show user data from Random User Generator API (https://randomuser.me/api) with functionalities to search by keyword name with debounce search, filter by gender, sort by table column, and pagination.
+A web application (sample project) to show user data from Random User Generator API (https://randomuser.me/api) with functionalities to search by keyword name with debounce search, filter by gender, sort by table column, and pagination.
 
 #
 
